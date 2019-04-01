@@ -1,0 +1,10 @@
+{
+  "name": "TS-Node-Github-Report",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node out/index.js"
+  }
+}
