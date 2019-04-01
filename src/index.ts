@@ -4,9 +4,17 @@ import { User } from './User'
 import { Repo } from './Repo'
 
 let svc: GithubApiService = new GithubApiService()
-svc.getUserInfo('xkux8023', (user: User) => {
-  svc.getRepos(user.login, (repos: Repo[]) => {
-    let sortedRepos = _.sortBy(repos, [(repo: Repo) => repo.forks_count * -1])
-    user.repos = sortedRepos
+
+if (process.argv.length < 3) {
+  console.log("必须传入用户名");
+} else {
+  svc.getUserInfo(process.argv[2], (user: User) => {
+    svc.getRepos(process.argv[2], (repos: Repo[]) => {
+      let sortedRepos = _.sortBy(repos, [
+        (repo: Repo) => repo.forks_count * -1
+      ])
+      user.repos = sortedRepos
+      console.log(user)
+    })
   })
-})
+}
