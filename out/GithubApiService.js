@@ -18,10 +18,10 @@ var options = {
 var GithubApiService = /** @class */ (function () {
     function GithubApiService() {
     }
-    GithubApiService.prototype.getUserInfo = function (userName) {
+    GithubApiService.prototype.getUserInfo = function (userName, cb) {
         request.get('https://api.github.com/users/' + userName, options, function (error, response, body) {
             var user = new User_1.User(body);
-            console.log(user);
+            cb(user);
         });
     };
     return GithubApiService;

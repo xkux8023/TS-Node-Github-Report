@@ -10,13 +10,13 @@ const options = {
 }
 
 export class GithubApiService {
-  getUserInfo(userName: string) {
+  getUserInfo(userName: string, cb: (user: User) => any) {
     request.get(
       'https://api.github.com/users/' + userName,
       options,
       (error: any, response: any, body: any) => {
         let user: User = new User(body)
-        console.log(user)
+        cb(user)
       }
     )
   }
